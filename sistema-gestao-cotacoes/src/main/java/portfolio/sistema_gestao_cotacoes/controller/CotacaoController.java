@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.*;
 import portfolio.sistema_gestao_cotacoes.business.CotacaoService;
 import portfolio.sistema_gestao_cotacoes.infrastructure.entitys.Cotacao;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/cotacoes")
 @RequiredArgsConstructor
@@ -20,20 +22,20 @@ public class CotacaoController {
         return ResponseEntity.ok().build();
     }
 
-    @GetMapping
-    public ResponseEntity<Cotacao> consultarCotacaoPorId(@RequestParam Integer id) {
+    @GetMapping("/{id}")
+    public ResponseEntity<Cotacao> consultarCotacaoPorId(@PathVariable Integer id) {
         cotacaoService.consultarCotacaoPorId(id);
         return ResponseEntity.ok(cotacaoService.consultarCotacaoPorId(id));
     }
 
-    @DeleteMapping
-    public ResponseEntity<Void> deletarCotacaoPorId(@RequestParam Integer id) {
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deletarCotacaoPorId(@PathVariable Integer id) {
         cotacaoService.deletarCotacaoPorId(id);
         return ResponseEntity.ok().build();
     }
 
-    @PutMapping
-    public ResponseEntity<Void> atualizarCotacaoPorId(@RequestParam Integer id, @RequestBody Cotacao cotacao) {
+    @PutMapping("/{id}")
+    public ResponseEntity<Void> atualizarCotacaoPorId(@PathVariable Integer id, @RequestBody Cotacao cotacao) {
         cotacaoService.atualizarCotacaoPorId(id, cotacao);
         return ResponseEntity.ok().build();
     }
